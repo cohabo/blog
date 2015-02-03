@@ -10,19 +10,6 @@ Template.home.destroyed= function() {
 
 Template.home.helpers({
     'postsList': function () {
-        return [
-            {
-                title: "My second entry",
-                description: "This is the descriptive text.",
-                author: "Author Name",
-                timeCreated: moment().subtract(3, 'days').unix()
-            },
-             {
-                title: "My first entry",
-                description: "This is the first entry's descriptive text.",
-                author: "Author Name",
-                timeCreated: moment().subtract(4, 'days').unix()
-            }
-        ]
+        return Posts.find({}, { sort: { timeCreated: 'desc' }});
     }
 });
