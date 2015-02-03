@@ -1,0 +1,20 @@
+<template name="contextExample">
+    <p>{{ logContext }}</p>
+    <button>Get a random number</button>
+    {{# blockHelperExample true }}
+        <p>This is true!</p>
+    {{ else }}
+    <p>This is false!</p>
+    {{/ blockHelperExample }}
+</template>
+
+<template name="blockHelperExample">
+    <div>
+        <h1>Block helper</h1>
+        {{# if this }}
+        <p>This content: {{> Template.contentBlock }}</p>
+        {{ else }}
+        <p>Else content: {{> Template.elseBlock }}</p>
+        {{/ if }}
+    </div>
+</template>
