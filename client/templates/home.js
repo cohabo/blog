@@ -13,3 +13,11 @@ Template.home.helpers({
         return Posts.find({}, { sort: { timeCreated: 'desc' }});
     }
 });
+
+Template.home.events({
+    'click button.lazyload': function (event, template) {
+        var currentLImit = Session.get('lazyloadLimit');
+
+        Session.set('lazyloadLimit', currentLimit + 2);
+    }
+});
