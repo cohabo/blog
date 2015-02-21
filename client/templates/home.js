@@ -1,5 +1,11 @@
 Template.home.created = function() {
     console.log("Home created");
+
+    this.autorun(function () {
+        console.log(Session.get('mySessionExample'));
+        console.log(this);
+        console.log(Template.instance());
+    });
 }
 Template.home.rendered= function() {
     console.log("Home rendered");
@@ -11,6 +17,9 @@ Template.home.destroyed= function() {
 Template.home.helpers({
     'postsList': function () {
         return Posts.find({}, { sort: { timeCreated: 'desc' }});
+    },
+    'sessionExample': function () {
+        return Session.get('mySessionExample');
     }
 });
 
