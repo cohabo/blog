@@ -8,23 +8,44 @@ Meteor.startup(function () {
                 title: "My first entry.",
                 slug: "my-first-entry",
                 description: "An entry in the blog.",
-                timeCreated: moment().subtract(7, 'days').unix(),
+                timeCreated: moment().subtract(10, 'days').unix(),
                 author: "Pat Doe"
             },
             {
                 title: "My second entry.",
                 slug: "my-second-entry",
                 description: "Another entry in the blog.",
-                timeCreated: moment().subtract(3, 'days').unix(),
+                timeCreated: moment().subtract(7, 'days').unix(),
                 author: "Alex Doe"
             },
             {
                 title: "My third entry.",
                 slug: "my-third-entry",
                 description: "Another 'nother entry in the blog.",
-                timeCreated: moment().subtract(2, 'days').unix(),
+                timeCreated: moment().subtract(6, 'days').unix(),
                 author: "Cody Doe"
-            }
+            },
+            {
+                title: "My fourth entry.",
+                slug: "my-fourth-entry",
+                description: "An entry in the blog.",
+                timeCreated: moment().subtract(5, 'days').unix(),
+                author: "Pat Doe"
+            },
+            {
+                title: "My fifth entry.",
+                slug: "my-fifth-entry",
+                description: "An entry in the blog.",
+                timeCreated: moment().subtract(4, 'days').unix(),
+                author: "Pat Doe"
+            },
+            {
+                title: "My sixth entry.",
+                slug: "my-sixth-entry",
+                description: "An entry in the blog.",
+                timeCreated: moment().subtract(3, 'days').unix(),
+                author: "Pat Doe"
+            },
         ];
 
         // Add each name to database
