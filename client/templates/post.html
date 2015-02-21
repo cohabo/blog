@@ -1,0 +1,12 @@
+<template name="post">
+    <h1>{{ title }}</h1>
+    <p>{{ description }}</p>
+    <small>
+        Posted {{ formatTime timecreated "fromNow" }} by {{ author }}
+    </small>
+    <div class="postContent">
+        {{# markdown }}
+{{ text }}
+        {{/ markdown }}
+    </div>
+</template>
