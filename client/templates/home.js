@@ -16,8 +16,10 @@ Template.home.helpers({
 
 Template.home.events({
     'click button.lazyload': function (event, template) {
-        var currentLImit = Session.get('lazyloadLimit');
+        // Get the lazyload limit from session
+        var currentLimit = Session.get('lazyloadLimit');
 
+        // Add 2 to the lazy load limit
         Session.set('lazyloadLimit', currentLimit + 2);
     }
 });
