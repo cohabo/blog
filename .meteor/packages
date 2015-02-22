@@ -13,3 +13,4 @@ iron:router
 reactive-var
 accounts-ui
 accounts-password
+wizonesolutions:underscore-string
