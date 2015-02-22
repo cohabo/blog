@@ -18,6 +18,15 @@ Router.configure({
     }
 });
 
+PostController = RouteController.extend({
+    waitOn: function () {
+        return Meteor.subscribe('single-post', this.params.slug);
+    },
+    data: function () {
+        return Posts.findOne({slug: this.params.slug});
+    }
+});
+
 Router.map(function () {
     this.route('Home', {
         path: '/',
@@ -35,11 +44,32 @@ Router.map(function () {
     this.route('Post', {
         path: '/posts/:slug',
         template: 'post',
-        waitOn: function () {
-            return Meteor.subscribe('single-post', this.params.slug);
-        },
-        data: function (slug) {
-            return Posts.findOne({slug: this.params.slug});
-        }
+        controller: 'PostController'
+    });
+
+    this.route('Create Post', {
+        path: '/create-post',
+        template: 'editPost'
+    });
+
+    this.route('Edit Post', {
+        path: '/edit-post/:slug',
+        template: 'editPost',
+        controller: 'PostController'
     });
 });
+
+// Make sure user is logged in with admin role
+var requiresAdminAccess = function () {
+    if (!Meteor.user() ||
+        !Meteor.user().roles ||
+        !Meteor.user().roles.admin)
+    {
+        this.render('notFound');
+    } else {
+        this.next();
+    }
+};
+
+// Admin-only access to certain routes
+Router.onBeforeAction(requiresAdminAccess, {only: ['Create Post', 'Edit Post']});
