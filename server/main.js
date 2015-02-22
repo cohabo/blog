@@ -53,4 +53,19 @@ Meteor.startup(function () {
             Posts.insert(post);
         });
     }
+
+    // Create admin user if none exists
+    if (Meteor.users.find().count() === 0) {
+        console.log('Created Admin user');
+
+        var userId = Accounts.createUser({
+            username: 'brylie',
+            email: 'test@user.com',
+            password: 'testing123',
+            profile: {
+                name: "Test User"
+            }
+        });
+        Meteor.users.update(userId, {$set: {roles: {admin: true}}});
+    }
 });
