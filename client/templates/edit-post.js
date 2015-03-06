@@ -1,3 +1,12 @@
+// Set the default save button text
+Session.setDefault('saveButton', 'Save Post');
+
+Template.editPost.helpers({
+    saveButtonText: function () {
+        return Session.get('saveButton');
+    }
+});
+
 Template.editPost.events({
     'submit form': function (event, template) {
         event.preventDefault();
@@ -27,15 +36,14 @@ Template.editPost.events({
             // Create post slug
             var slug = _.slugify(form.title.value);
 
-            Posts.insert({
+           Meteor.call('insertPost', {
                 title: form.title.value,
                 slug: slug,
                 description: form.description.value,
-                text: form.text.value,
-                timeCreated: moment().unix(),
-                author: user.profile.name,
-                owner: user._id
-            }, function (error) {
+                text: form.text.value
+            }, function (error, slug) {
+               Session.set('saveButton', 'Save Post');
+
                 if (error) {
                     // display the error to the user
                     alert(error.reason);
